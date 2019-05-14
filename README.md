@@ -24,7 +24,7 @@ Register a reducer and initial data for a unique key in the state tree.
 - reducer `function(state, type, payload)` - A reducer on how to update state tree, given action arguments
 - initialState(optional) `any` - the initial state value.
 
-```
+```js
 import { registerSlice } from 'react-slice'
 
 registerSlice('footer', (state, type, payload) => {
@@ -45,7 +45,7 @@ registerSlice('footer', (state, type, payload) => {
 ### SliceProvider
 Add the provider in your code similar to Redux and others
 Probably index or App.js
-```
+```js
 import { SliceProvider } from 'react-slice';
 
 render(
@@ -66,7 +66,7 @@ render(
 - stateKey `string` - A unique key on where to store/access it from the state tree.
 - updateDepFunc `function(state): [...dependencies]` - A function that returns an array of values to trigger re-render
 
-```
+```js
 import { useSlice } from 'react-slice';
 
 function CompTest() {

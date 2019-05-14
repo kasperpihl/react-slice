@@ -1,6 +1,6 @@
 # Using HOCs
 react-slice does not come with an hoc out of the box, because I don't want to depend on the hoist-non-react-statics. However you can create your own really easily
-```
+```js
 // create a withSlice.js somewhere
 import React from 'react';
 import hoistNonReactStatics from 'hoist-non-react-statics';
@@ -29,7 +29,7 @@ And then you can use it like this :)
 - stateKey `string` - A unique key on where to store/access it from the state tree.
 - updateDepFunc (optional) `function(state): [...dependencies]` - A function that returns an array of values to trigger re-render
 
-```
+```js
 import { withSlice } from '../your/path/withSlice';
 
 class CompTest extends React.Component {
