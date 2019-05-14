@@ -9,10 +9,12 @@ npm i react-slice
 
 ## Getting started
 
+
 1. [Register our reducers (registerSlice)](#registerslicestatekey-reducer-initialstate)
 2. [Provide the store in react (SliceProvider)](#sliceprovider)
 3. [Access/update global state (useSlice)](#useslicestatekey-updatedepfunc-state-dispatch)
-3.1. [Access/update using HOC (withSlice)](https://github.com/kasperpihl/react-slice/blob/master/HOCS.md)
+4. [Access/update using HOC (withSlice)](https://github.com/kasperpihl/react-slice/blob/master/HOCS.md)
+
 
 ### registerSlice(stateKey, reducer, initialState)
 Register a reducer and initial data for a unique key in the state tree.
@@ -83,3 +85,6 @@ function CompTest() {
   return <div onClick={callback}>{footerState.position}</div>;
 }
 ```
+
+### Access/update using HOC (withSlice)
+This is not built into react-slice, but check https://github.com/kasperpihl/react-slice/blob/master/HOCS.md to see how it can be done easily.

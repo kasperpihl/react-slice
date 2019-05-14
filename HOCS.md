@@ -30,7 +30,7 @@ And then you can use it like this :)
 - updateDepFunc (optional) `function(state): [...dependencies]` - A function that returns an array of values to trigger re-render
 
 ```
-import { withSlice } from 'react-slice';
+import { withSlice } from '../your/path/withSlice';
 
 class CompTest extends React.Component {
   render() {
