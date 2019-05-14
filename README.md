@@ -1,8 +1,6 @@
 # React Slice
-A simple approach to global state
-- Key is only
-- You register reducers on a unique key
-- 
+A simple performant approach to global state using only React built'ins.
+
 
 ## Installation
 ```
@@ -12,8 +10,10 @@ npm i react-slice
 ## Getting started
 
 We need to do 2 things
-- Register our reducers (registerSlice)
-- Provide the store in react (SliceProvider)
+1. [Register our reducers (registerSlice)](#registerslicestatekey-reducer-initialstate)
+2. [Provide the store in react (SliceProvider)](#sliceprovider)
+3. [Access/update global state (useSlice)]()
+3.1 [Access/update using HOC (withSlice)]()
 
 ### registerSlice(stateKey, reducer, initialState)
 Register a reducer and initial data for a unique key in the state tree.
@@ -40,7 +40,6 @@ registerSlice('footer', (state, type, payload) => {
   position: 'bottom'
 });
 ```
-Now we have a reducer registered for state.footer :)
 
 ### SliceProvider
 Add the provider in your code similar to Redux and others
@@ -55,16 +54,10 @@ render(
 )
 ```
 
-**SliceProvider props**
-
 | Prop name | type | Default value | Description |
 | --- | --- | --- | --- |
 | debug | bool | false | Enable the debug logger to see what's going on 🚀 |
 
-
-## Access/update the global state
-
-We access our state tree using a hook (useSlice) or hoc (withSlice)
 
 ### useSlice(stateKey, [updateDepFunc]): [state, dispatch]
 
@@ -90,30 +83,4 @@ function CompTest() {
 
   return <div onClick={callback}>{footerState.position}</div>;
 }
-```
-
-
-### withSlice(propKey, stateKey, [updateDepFunc]): Component
-
-**Params**
-- propKey `string` - Name of the prop to inject this state into.
-- stateKey `string` - A unique key on where to store/access it from the state tree.
-- updateDepFunc `function(state): [...dependencies]` - A function that returns an array of values to trigger re-render
-
-```
-import { withSlice } from 'react-slice';
-
-class CompTest extends React.Component {
-  render() {
-    const [footerState, footerDispatch] = this.props.myChosenProp;
-    
-    const callback = () => {
-      // Update footer with an action.
-      footerDispatch('updatePosition', 'right');
-    }
-    return <div onClick={callback}>{footerState.position}</div>;
-  }
-}
-
-export default withSlice('myChosenProp', 'footer')(CompTest);
 ```
