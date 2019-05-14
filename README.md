@@ -13,7 +13,7 @@ npm i react-slice
 1. [Register our reducers (registerSlice)](#registerslicestatekey-reducer-initialstate)
 2. [Provide the store in react (SliceProvider)](#sliceprovider)
 3. [Access/update global state (useSlice)](#useslicestatekey-updatedepfunc-state-dispatch)
-4. [Access/update using HOC (withSlice)](https://github.com/kasperpihl/react-slice/blob/master/HOCS.md)
+4. [Access/update using HOC (withSlice)](#accessupdate-using-hoc-withslice)
 
 
 ### registerSlice(stateKey, reducer, initialState)
