@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useContext } from 'react';
-import SliceContext from '../utils/SliceContext';
-import useHasChanges from './useHasChanges';
+import SliceContext from './utils/SliceContext';
+import useHasChanges from './utils/useHasChanges';
 
 export default function useSlice(key, updateDepFunc) {
   const store = useContext(SliceContext);
