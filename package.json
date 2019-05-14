@@ -1,0 +1,29 @@
+{
+  "name": "react-slice",
+  "version": "0.0.2",
+  "description": "Simple global state with reducers",
+  "source": "src/index.js",
+  "main": "dist/slice.js",
+  "unpkg": "dist/slice.umd.js",
+  "scripts": {
+    "prepublishOnly": "npm run build",
+    "build": "microbundle --jsx React.createElement --no-sourcemap",
+    "start": "microbundle --jsx React.createElement --no-sourcemap watch"
+  },
+  "keywords": [
+    "Global",
+    "state",
+    "reducer",
+    "react",
+    "redux"
+  ],
+  "author": "Kasper Pihl Tornoe",
+  "license": "MIT",
+  "devDependencies": {
+    "microbundle": "^0.11.0",
+    "react": "^16.8.6"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.6"
+  }
+}
