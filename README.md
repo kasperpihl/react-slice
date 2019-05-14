@@ -9,11 +9,10 @@ npm i react-slice
 
 ## Getting started
 
-We need to do 2 things
 1. [Register our reducers (registerSlice)](#registerslicestatekey-reducer-initialstate)
 2. [Provide the store in react (SliceProvider)](#sliceprovider)
-3. [Access/update global state (useSlice)]()
-3.1 [Access/update using HOC (withSlice)]()
+3. [Access/update global state (useSlice)](#useslicestatekey-updatedepfunc-state-dispatch)
+3.1. [Access/update using HOC (withSlice)](https://github.com/kasperpihl/react-slice/blob/master/HOCS.md)
 
 ### registerSlice(stateKey, reducer, initialState)
 Register a reducer and initial data for a unique key in the state tree.
