@@ -1,4 +1,4 @@
-import { initialSlices, reducers } from './registerSlice';
+import { initialSlices, reducers } from '../registerSlice';
 import createSubscribeStore from './createSubscribeStore';
 import debugLogger from './debugLogger';
 
