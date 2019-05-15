@@ -10,6 +10,7 @@ export default (propName, stateKey, updateDepFunc) => WrappedComponent => {
     return <WrappedComponent {...props} {...injectProps} />;
   }
   if (typeof hoistNonReactStatics !== 'undefined') {
+    console.log('hoisted!');
     hoistNonReactStatics(withSlice, WrappedComponent);
   }
   return withSlice;
