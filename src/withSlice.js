@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSlice } from 'react-slice';
+import useSlice from './useSlice';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 
 export default (propName, stateKey, updateDepFunc) => WrappedComponent => {
