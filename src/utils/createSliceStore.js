@@ -21,23 +21,26 @@ export default function createSliceStore(options = {}) {
 
   store.getSlice = key => slices[key];
   store.subscribe = subscribe;
-  store.seed = (key, data, force) => {
+  store.seed = (key, data) => {
     if (typeof reducers[key] !== 'function') {
       throw Error('Uninitialized part of slice tree: ', key);
     }
-    if (force || typeof slices[key] === 'undefined') {
+    if (typeof slices[key] === 'undefined') {
       slices[key] = data;
-      notify(key, slices[key]);
     }
   };
-  store.dispatch = (key, action) => {
+
+  store.dispatch = (key, type, payload) => {
     if (typeof reducers[key] !== 'function') {
       throw Error('Uninitialized part of slice tree: ', key);
     }
+    if (typeof type !== 'string') {
+      throw Error('Dispatch must include type (string) as first parameter');
+    }
     const prevState = slices[key];
-    slices[key] = reducers[key](slices[key], action);
+    slices[key] = reducers[key](slices[key], type, payload);
     if (options.debug) {
-      debugLogger(key, action, prevState, slices[key]);
+      debugLogger(key, type, payload, prevState, slices[key]);
     }
     notify(key, slices[key]);
   };

@@ -1,4 +1,4 @@
-export default (key, action, prevState, nextState) => {
+export default (key, type, payload, prevState, nextState) => {
   if (typeof console.groupCollapsed !== 'undefined') {
     const title = [`react-slice dispatch on key:`, `%c${key}`];
     const styles = ['color: gray; font-weight: lighter;', ''];
@@ -10,10 +10,11 @@ export default (key, action, prevState, nextState) => {
       'color: #9E9E9E; font-weight: bold;',
       prevState
     );
+    console.log('%type      ', 'color: #03A9F4; font-weight: bold;', type);
     console.log(
-      '%caction       ',
+      '%cpayload      ',
       'color: #03A9F4; font-weight: bold;',
-      action
+      payload
     );
     console.log(
       '%cnext state   ',
