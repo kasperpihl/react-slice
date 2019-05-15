@@ -1,11 +1,21 @@
-export const initialSlices = {};
+export const initialStates = {};
 export const reducers = {};
 
-export default function registerSlice(key, reducer, initialSlice) {
-  if (typeof reducers[key] === 'function') {
-    throw Error('Reducer already registered with key: ', key);
+export default function registerSlice(options) {
+  if (typeof options !== 'object') {
+    throw Error(
+      'react-slice: registerSlice must include options object as first param'
+    );
   }
 
-  initialSlices[key] = initialSlice;
-  reducers[key] = reducer;
+  const { stateKey, reducer, initialState } = options;
+  if (typeof reducer !== 'function') {
+    throw Error('react-slice registerSlice must set a reducer option');
+  }
+  if (typeof reducers[stateKey] === 'function') {
+    throw Error('Reducer already registered for stateKey: ', stateKey);
+  }
+
+  initialStates[stateKey] = initialState;
+  reducers[stateKey] = reducer;
 }

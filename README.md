@@ -48,9 +48,12 @@ Add the provider in your code similar to Redux and others
 Probably index or App.js
 ```js
 import { SliceProvider } from 'react-slice';
+const sliceOptions = {
+  debug: true
+};
 
 render(
-  <SliceProvider debug>
+  <SliceProvider options={sliceOptions}>
     <App>
   </SliceProvider>
 )

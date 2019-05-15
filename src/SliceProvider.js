@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import SliceContext from './utils/SliceContext';
 import createSliceStore from './utils/createSliceStore';
 
-export default function SliceProvider({ children, ...options }) {
+export default function SliceProvider({ children, options = {} }) {
   const store = useMemo(() => createSliceStore(options), []);
 
   return (

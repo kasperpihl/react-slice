@@ -1,10 +1,10 @@
-import { initialSlices, reducers } from '../registerSlice';
+import { initialStates, reducers } from '../registerSlice';
 import createSubscribeStore from './createSubscribeStore';
 import debugLogger from './debugLogger';
 
 export default function createSliceStore(options = {}) {
   const slices = {
-    ...initialSlices
+    ...initialStates
   };
 
   const { subscribe, getSubscribers } = createSubscribeStore();
