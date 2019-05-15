@@ -6,7 +6,7 @@ export default function useSlice(key, updateDepFunc) {
   const store = useContext(SliceContext);
 
   const [updateBust, setUpdateBust] = useState(new Date());
-  const slice = store.getSlice(key);
+  const slice = store.getState(key);
 
   if (typeof slice === 'undefined') {
     throw Error('Trying to access uninitialized part of slice tree: ', key);
