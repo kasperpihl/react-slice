@@ -7,14 +7,15 @@ A simple performant approach to global state using only React built'ins.
 npm i react-slice
 ```
 
-## Getting started
-
+## Basic setup
 
 1. [Register our reducers (registerSlice)](#registerslicestatekey-reducer-initialstate)
 2. [Provide the store in react (SliceProvider)](#sliceprovider)
 3. [Access/update global state (useSlice)](#useslicestatekey-updatedepfunc-state-dispatch)
-4. [Access/update using HOC (withSlice)](#accessupdate-using-hoc-withslice)
+4. [Access/update using HOC (withSlice)](#withslicepropkey-statekey-updatedepfunc-component)
 
+## Advanced
+5. 
 
 ### registerSlice(stateKey, reducer, initialState)
 Register a reducer and initial data for a unique key in the state tree.
@@ -94,7 +95,7 @@ function CompTest() {
 - updateDepFunc (optional) `function(state): [...dependencies]` - A function that returns an array of values to trigger re-render
 
 ```js
-import { withSlice } from '../your/path/withSlice';
+import { withSlice } from 'react-slice';
 
 class CompTest extends React.Component {
   render() {
