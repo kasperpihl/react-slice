@@ -1,6 +1,6 @@
 {
   "name": "react-slice",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Simple global state with reducers",
   "source": "src/index.js",
   "main": "dist/slice.js",
