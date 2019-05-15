@@ -52,7 +52,7 @@ registerSlice({
 });
 ```
 
-### SliceProvider
+### SliceProvider + createSliceStore
 Create a store and add the provider in your code similar to Redux.
 Probably index.js or App.js:
 ```js
