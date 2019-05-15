@@ -14,6 +14,6 @@
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-slice": "file:../react-slice-0.0.11.tgz"
+    "react-slice": "0.0.12"
   }
 }
