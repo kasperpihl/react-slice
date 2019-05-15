@@ -20,12 +20,10 @@
   "author": "Kasper Pihl Tornoe",
   "license": "MIT",
   "devDependencies": {
-    "hoist-non-react-statics": "^3.3.0",
     "microbundle": "^0.11.0",
     "react": "^16.8.6"
   },
   "peerDependencies": {
-    "react": ">=16.8.6",
-    "hoist-non-react-statics": "^3.3.0"
+    "react": ">=16.8.6"
   }
 }
