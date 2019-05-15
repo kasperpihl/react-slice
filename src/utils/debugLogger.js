@@ -10,7 +10,7 @@ export default (key, type, payload, prevState, nextState) => {
       'color: #9E9E9E; font-weight: bold;',
       prevState
     );
-    console.log('%type      ', 'color: #03A9F4; font-weight: bold;', type);
+    console.log('%ctype         ', 'color: #03A9F4; font-weight: bold;', type);
     console.log(
       '%cpayload      ',
       'color: #03A9F4; font-weight: bold;',

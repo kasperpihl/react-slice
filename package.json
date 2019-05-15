@@ -7,6 +7,7 @@
   "module": "dist/foo.mjs",
   "unpkg": "dist/slice.umd.js",
   "scripts": {
+    "prebuild": "rimraf dist",
     "prepublishOnly": "npm run build",
     "build": "microbundle --jsx React.createElement --no-sourcemap",
     "start": "microbundle --jsx React.createElement --no-sourcemap --no-compress watch"
