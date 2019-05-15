@@ -7,7 +7,7 @@
   "unpkg": "dist/slice.umd.js",
   "scripts": {
     "prepublishOnly": "npm run build",
-    "build": "microbundle --jsx React.createElement --no-sourcemap --no-compress",
+    "build": "microbundle --jsx React.createElement --no-sourcemap",
     "start": "microbundle --jsx React.createElement --no-sourcemap --no-compress watch"
   },
   "keywords": [
