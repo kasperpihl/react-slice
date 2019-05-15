@@ -5,11 +5,14 @@
   "source": "src/index.js",
   "main": "dist/slice.js",
   "unpkg": "dist/slice.umd.js",
+  "alias": {
+    "react-slice": "./src"
+  },
   "scripts": {
     "prebuild": "rimraf dist",
     "prepublishOnly": "npm run build",
     "build": "microbundle --jsx React.createElement --no-compress --no-sourcemap",
-    "start": "microbundle watch --jsx React.createElement --no-sourcemap --no-compress"
+    "start": "parcel demo/index.html"
   },
   "keywords": [
     "Global",
@@ -22,7 +25,9 @@
   "license": "MIT",
   "devDependencies": {
     "microbundle": "^0.11.0",
+    "parcel-bundler": "^1.12.3",
     "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "rimraf": "^2.6.3"
   },
   "peerDependencies": {
