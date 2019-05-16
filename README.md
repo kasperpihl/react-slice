@@ -1,7 +1,6 @@
 # React Slice
 A simple performant approach to global state using only React built'ins.
 
-
 ## Installation
 ```
 npm i react-slice
@@ -9,7 +8,7 @@ npm i react-slice
 
 ## Basic setup
 
-1. [Register our reducers (registerSlice)](#registerslicestatekey-reducer-initialstate)
+1. [Register our reducers (registerSlice)](#registersliceoptions)
 2. [Create and Provide the store (createSliceStore + SliceProvider)](#sliceprovider--createslicestore)
 3. [Access/update global state (useSlice)](#useslicestatekey-updatedepfunc-state-dispatch)
 4. [Access/update using HOC (withSlice)](#withslicepropkey-statekey-updatedepfunc-component)
@@ -73,9 +72,9 @@ render(
 
 | Prop name | type | Default value | Description |
 | --- | --- | --- | --- |
-| debug | bool | false | Enable the debug logger to see what's going on 🚀 |
-| persist | object | null | Persist the global states 🚀 |
-| persist.storage | Storage | **required** | Storage api to use (localStorage, asyncStorage etc.) |
+| debug | bool | false | Enable the debug logger to see what's going on 🖥 |
+| persist | object | null | Persist the global states 🌍 |
+| persist.storage | Storage | **required** | Storage api to use (localStorage, asyncStorage etc.) 🏬 |
 
 
 ### useSlice(stateKey, [updateDepFunc]): [state, dispatch]
