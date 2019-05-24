@@ -32,5 +32,8 @@
   },
   "peerDependencies": {
     "react": ">=16.8"
+  },
+  "dependencies": {
+    "redux": "4.0.1"
   }
 }

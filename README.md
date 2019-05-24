@@ -1,25 +1,30 @@
 # React Slice
+
 A simple performant approach to global state using only React built'ins.
 
 ## Installation
-```
+
+```js
 npm i react-slice
 ```
 
 ## Basic setup
 
-1. [Register our reducers (registerSlice)](#registersliceoptions)
-2. [Create and Provide the store (createSliceStore + SliceProvider)](#sliceprovider--createslicestore)
-3. [Access/update global state (useSlice)](#useslicestatekey-updatedepfunc-state-dispatch)
-4. [Access/update using HOC (withSlice)](#withslicepropkey-statekey-updatedepfunc-component)
+- [Register our reducers (registerSlice)](#registersliceoptions)
+- [Create and Provide the store (createSliceStore + SliceProvider)](#sliceprovider--createslicestore)
+- [Access/update global state (useSlice)](#useslicestatekey-updatedepfunc-state-dispatch)
+- [Access/update using HOC (withSlice)](#withslicepropkey-statekey-updatedepfunc-component)
 
 ## Advanced stuff
-5. Coming soon
+
+- Coming soon
 
 ### registerSlice(options)
+
 Register a reducer and initial data for a unique key in the state tree.
 
 options object **Params**
+
 - stateKey `string` - A unique key on where to store/access it from the state tree.
 - reducer `function(state, type, payload)` - A reducer on how to update state tree, given action arguments
 - initialState `object` - the initial state object.
@@ -52,8 +57,10 @@ registerSlice({
 ```
 
 ### SliceProvider + createSliceStore
+
 Create a store and add the provider in your code similar to Redux.
 Probably index.js or App.js:
+
 ```js
 import { SliceProvider, createSliceStore } from 'react-slice';
 const sliceStore = createSliceStore({
@@ -76,10 +83,10 @@ render(
 | persist | object | null | Persist the global states 🌍 |
 | persist.storage | Storage | **required** | Storage api to use (localStorage, asyncStorage etc.) 🏬 |
 
-
 ### useSlice(stateKey, [updateDepFunc]): [state, dispatch]
 
-**Params**
+Parameters
+
 - stateKey `string` - A unique key on where to store/access it from the state tree.
 - updateDepFunc `function(state): [...dependencies]` - A function that returns an array of values to trigger re-render
 
@@ -105,7 +112,8 @@ function CompTest() {
 
 ### withSlice(propKey, stateKey, [updateDepFunc]): Component
 
-**Params**
+Parameters
+
 - propKey `string` - Name of the prop to inject this state into.
 - stateKey `string` - A unique key on where to store/access it from the state tree.
 - updateDepFunc (optional) `function(state): [...dependencies]` - A function that returns an array of values to trigger re-render
@@ -116,7 +124,7 @@ import { withSlice } from 'react-slice';
 class CompTest extends React.Component {
   render() {
     const [footerState, footerDispatch] = this.props.myChosenProp;
-    
+
     const callback = () => {
       // Update footer with an action.
       footerDispatch('updatePosition', 'right');
