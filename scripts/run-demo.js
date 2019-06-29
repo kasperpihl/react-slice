@@ -7,7 +7,7 @@ const demoCwd = { cwd: path.resolve(__dirname, '../demo') };
 
 console.log('--- STARTING DEMO BUILD ---');
 console.log('--- PACKING react-slice ---');
-console.log(execSync('ls').toString());
+
 const fileName = execSync(
   'OUTPUT="$(command npm pack | tail -1)"; echo "${OUTPUT}";',
   rootCwd

@@ -1,70 +1,42 @@
-import { useContext, useState, useEffect } from 'react';
-import SliceContext from './utils/SliceContext';
+import { useState, useEffect, useCallback } from 'react';
 import createSliceStore from './utils/createSliceStore';
 import useHasChanges from './utils/useHasChanges';
 
 export default function createSlice<TS, TA>(options: {
-  name: string;
   reducer: (state: TS, action: TA) => TS;
   initialState?: TS;
-  debug?: boolean;
+  debugName?: string;
 }) {
   if (typeof options !== 'object') {
     throw Error('react-slice: createSlice must include options object');
   }
 
-  const { name, reducer, initialState } = options;
-  if (typeof name !== 'string') {
-    throw Error('react-slice createSlice must include name');
-  }
-  if (typeof initialState !== 'object') {
-    throw Error('react-slice createSlice must include initialState object');
-  }
+  const { reducer } = options;
   if (typeof reducer !== 'function') {
     throw Error('react-slice createSlice must include reducer function');
   }
+  const store = createSliceStore(options);
 
-  const obj = {
-    name: options.name,
-    originalName: options.name,
-    store: createSliceStore(),
-    initialized: false
-  };
-  function initialize(store: typeof obj.store) {
-    if (obj.initialized) return;
-    obj.initialized = true;
-    if (store) {
-      obj.store = store;
-    }
-    obj.store.register(obj.name, options);
-  }
-  function useSlice(uniqueFn?: () => any[]): TS {
-    const store = useContext(SliceContext);
-    initialize(store);
-
+  function useSlice(
+    uniqueFn?: (state: TS) => any[]
+  ): [TS, (action: TA) => void] {
     const [updateBust, setUpdateBust] = useState(new Date());
-    const slice: TS = obj.store.getState(obj.name);
+    const state: TS = store.getState();
 
-    if (typeof slice === 'undefined') {
-      throw Error(
-        `Trying to access uninitialized part of slice tree: ${obj.name}`
-      );
-    }
-
-    const hasChanges = useHasChanges(slice, uniqueFn);
+    const hasChanges = useHasChanges(state, uniqueFn);
+    const dispatch = useCallback((action: TA) => store.dispatch(action), [
+      store
+    ]);
 
     useEffect(() => {
-      return obj.store.subscribe(obj.name, newSlice => {
-        if (hasChanges(newSlice)) {
+      return store.subscribe(newState => {
+        if (hasChanges(newState)) {
           setUpdateBust(new Date());
         }
       });
-    }, [obj, hasChanges]);
+    }, [store, hasChanges]);
 
-    return slice;
+    return [state, dispatch];
   }
-  useSlice.rename = (newName: string) => (obj.name = newName);
-  useSlice.seed = (state: TS) => null;
-  useSlice.dispatch = (action: TA) => obj.store.dispatch(obj.name, action);
   return useSlice;
 }

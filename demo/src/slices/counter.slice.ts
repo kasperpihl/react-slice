@@ -2,7 +2,7 @@ import { createSlice } from 'react-slice';
 import produce from 'immer';
 
 type CounterState = {
-  counter: number;
+  value: number;
 };
 
 type IncrementAction = {
@@ -16,21 +16,20 @@ type DecrementAction = {
 type CounterActions = IncrementAction | DecrementAction;
 
 export default createSlice({
-  name: 'Counter',
-  debug: true,
+  debugName: 'Counter',
   reducer: (state: CounterState, action: CounterActions) =>
     produce(state, (draft: CounterState) => {
       switch (action.type) {
         case 'increment':
-          draft.counter += 1;
+          draft.value += 1;
           break;
         case 'decrement':
-          draft.counter -= 1;
+          draft.value -= 1;
           break;
       }
       return draft;
     }),
   initialState: {
-    counter: 0
+    value: 0
   }
 });

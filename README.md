@@ -1,6 +1,6 @@
 # React Slice
 
-A simple performant approach to global and LOCAL state using only React built'ins.
+A simple performant approach to global state using only React built'ins.
 
 ## Installation
 
@@ -8,32 +8,31 @@ A simple performant approach to global and LOCAL state using only React built'in
 npm i react-slice
 ```
 
-## Basic setup
+## Getting started
 
-- [Register our reducers (registerSlice)](#registersliceoptions)
-- [Create and Provide the store (createSliceStore + SliceProvider)](#sliceprovider--createslicestore)
-- [Access/update global state (useSlice)](#useslicestatekey-updatedepfunc-state-dispatch)
+- [Creating slices (isolated state objects)](#registersliceoptions)
+- [Accessing and updating the slices](#sliceprovider--createslicestore)
 
-## Advanced stuff
+### Creating slices (isolated state objects)
 
-- Coming soon
+Register a reducer in file (fx counter.slice.js)
 
-### createSlice(options)
-
-Register a reducer and initial data for a unique key in the state tree.
+createSlice(options)
 
 options object **Params**
 
-- name `string` - A unique key on where to store/access it from the state tree.
-- debug `boolean`
-- reducer `function(state, type, payload)` - A reducer on how to update state tree, given action arguments
-- initialState `any` - the initial state object.
+| Name         | Type                    | Default value | Description                                           |
+| ------------ | ----------------------- | ------------- | ----------------------------------------------------- |
+| reducer      | function(state, action) | **required**  | A standard reducer taking 2 arguments: state & action |
+| initialState | any                     | undefined     | The initial value of the state                        |
+| debugName    | string                  | null          | Turn on debugging, showing the string in the log      |
 
 ```js
+// counter.slice.js
 import { createSlice } from 'react-slice';
 
 export default createSlice({
-  name: 'counter',
+  debugName: 'counter',
   reducer: (state, action) => {
     switch (action.type) {
       case 'increment':
@@ -56,22 +55,7 @@ export default createSlice({
 });
 ```
 
-### Global state
-
-In order to use global state, all you need to do, is add a provider similar to Redux.
-Probably index.js:
-
-```js
-import { SliceProvider } from 'react-slice';
-
-render(
-  <SliceProvider>
-    <App>
-  </SliceProvider>
-)
-```
-
-### useSlice([updateDepFunc]): [state, dispatch]
+### Accessing and updating the slices
 
 Parameters
 
@@ -87,7 +71,7 @@ export default function App() {
   return (
     <div className="App">
       <h1>{counterState.counter}</h1>
-      <h2>Start editing to see some magic happen!</h2>
+      <h2>Start clicking to see some magic happen!</h2>
       <button
         onClick={() => {
           useCounterSlice.dispatch({ type: 'increment' });

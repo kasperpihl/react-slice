@@ -4,12 +4,12 @@
   "description": "Simple global state with reducers",
   "source": "slice.ts",
   "main": "dist/slice.js",
-  "module": "dist/foo.modern.mjs",
+  "module": "dist/slice.modern.mjs",
   "types": "dist/slice.d.ts",
   "scripts": {
     "prebuild": "rimraf dist",
     "prepack": "npm run build",
-    "build": "microbundle --jsx React.createElement --no-compress --no-sourcemap -f modern,cjs",
+    "build": "microbundle --jsx React.createElement -f modern,cjs",
     "demo": "node scripts/run-demo.js"
   },
   "keywords": [
@@ -30,6 +30,7 @@
     "react": ">=16.8"
   },
   "dependencies": {
-    "@types/react": "^16.8.22"
+    "@types/react": "^16.8.22",
+    "@types/react-dom": "^16.8.4"
   }
 }

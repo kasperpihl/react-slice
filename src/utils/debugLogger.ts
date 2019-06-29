@@ -5,7 +5,7 @@ export default <TA, TS>(
   nextState: TS
 ) => {
   if (typeof console.groupCollapsed !== 'undefined') {
-    const title = [`react-slice dispatch on:`, `%c${name}`];
+    const title = [`react-slice`, `%c${name}`];
     const styles = ['color: gray; font-weight: lighter;', ''];
 
     console.groupCollapsed(`%c ${title.join(' ')}`, ...styles);

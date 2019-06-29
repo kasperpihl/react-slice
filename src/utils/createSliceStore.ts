@@ -1,42 +1,40 @@
-import createSubscribeStore from './createSubscribeStore';
 import debugLogger from './debugLogger';
 
-export default function createSliceStore() {
-  const slices = {};
-  const states = {};
+type TSubscriptionObject = {
+  [id: string]: (state: any) => void;
+};
 
-  const { subscribe, getSubscribers } = createSubscribeStore();
-  const notify = <T>(name: string, state: T) => {
-    const subscribers = getSubscribers(name);
-    if (subscribers) {
-      Object.values(subscribers).forEach(callback => {
-        callback(state);
-      });
-    }
+export default function createSliceStore(options) {
+  let state = options.initialState;
+
+  const subscribers: TSubscriptionObject = {};
+  const subscribe = (callback: (state: any) => void) => {
+    const id = Math.random()
+      .toString(36)
+      .substring(7);
+
+    subscribers[id] = callback;
+
+    return () => {
+      delete subscribers[id];
+    };
+  };
+  const notify = <T>(state: T) => {
+    Object.values(subscribers).forEach(callback => {
+      callback(state);
+    });
   };
 
   return {
     subscribe,
-    register: (name: string, options) => {
-      slices[name] = options;
-      if (typeof options.initialState !== 'undefined') {
-        states[name] = options.initialState;
+    getState: <T>(): T => state,
+    dispatch: <T>(action: T) => {
+      const prevState = state;
+      state = options.reducer(state, action);
+      if (options.debugName) {
+        debugLogger(options.debugName, action, prevState, state);
       }
-    },
-    getState: <T>(name: string): T => states[name],
-    dispatch: <T>(name: string, action: T) => {
-      const slice = slices[name];
-      if (typeof slice === 'undefined') {
-        throw Error(`react-slice uninitialized part of state tree: ${name}`);
-      }
-
-      const prevState = states[name];
-      const newState = slice.reducer(states[name], action);
-      if (slice.debug) {
-        debugLogger(name, action, prevState, newState);
-      }
-      states[name] = newState;
-      notify(name, newState);
+      notify(state);
     }
   };
 }
