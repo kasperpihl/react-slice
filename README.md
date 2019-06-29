@@ -13,7 +13,7 @@ A simple performant approach to state management using only React built'ins.
 npm i react-slice
 ```
 
-## Getting started
+## The basics
 
 Let me show first, then explain after 🙏
 
@@ -73,3 +73,30 @@ it takes an options object that looks like this:
 | reducer      | function(state, action) | **required**  | A standard reducer taking 2 arguments: state & action |
 | initialState | any                     | undefined     | The initial value of the state                        |
 | debugName    | string                  | null          | Turn on debugging, showing the string in the log      |
+
+The hook it returns looks like this:
+`useCounterSlice(updateDepFn?: (state) => [...deps]): [state, dispatch]`
+
+| Name        | Type           | Default value | Description                                                  |
+| ----------- | -------------- | ------------- | ------------------------------------------------------------ |
+| updateDepFn | (state) => []) | null          | A function that return array of values to check for equality |
+
+```js
+function App() {
+  // This only re-renders when state.counter and state.someOtherVal updates! 🔥
+  const [counter, counterDispatch] = useCounterSlice(state => [
+    state.counter,
+    state.someOtherVal
+  ]);
+  // Render your stuff!
+}
+```
+
+## Advanced
+
+I need to write some more stuff soon.
+
+- [x] Show how to avoid unnecessary re-renders
+- [] Show how awesome this works with Typescript
+- [] Figure out a good way to use this outside react (from utils etc.)
+- [] Show an example of creating an HOC of the hook.
