@@ -97,6 +97,6 @@ function App() {
 I need to write some more stuff soon.
 
 - [x] Show how to avoid unnecessary re-renders
-- [] Show how awesome this works with Typescript
-- [] Figure out a good way to use this outside react (from utils etc.)
-- [] Show an example of creating an HOC of the hook.
+- [ ] Show how awesome this works with Typescript
+- [ ] Figure out a good way to use this outside react (from utils etc.)
+- [ ] Show an example of creating an HOC of the hook.
