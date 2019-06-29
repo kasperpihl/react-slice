@@ -27,22 +27,12 @@ export default createSlice({
   reducer: /*👈👈👈*/ (state, action) => {
     switch (action.type) {
       case 'increment':
-        return {
-          ...state,
-          value: state.value + 1
-        };
-      case 'decrement':
-        return {
-          ...state,
-          value: state.value - 1
-        };
+        return state + 1;
       default:
         return state;
     }
   },
-  initialState: /*👈👈👈*/ {
-    value: 0
-  }
+  initialState: /*👈👈👈*/ 0
 });
 ```
 
@@ -57,24 +47,14 @@ import useCounterSlice from './counter.slice'; // 👈👈👈
 export default function App(test) {
   const [counter, counterDispatch] = useCounterSlice(); // 👈👈👈
 
+  const onClick = () => {
+    counterDispatch({ type: 'increment' }); // 👈👈👈
+  };
   return (
     <div className="App">
-      <h1>{counter.value}</h1> {/*👈👈👈*/}
+      <h1>{counter /*👈👈👈*/}</h1>
       <h2>Start clicking to see some magic happen!</h2>
-      <button
-        onClick={() => {
-          counterDispatch({ type: 'increment' }); // 👈👈👈
-        }}
-      >
-        Increment
-      </button>
-      <button
-        onClick={() => {
-          counterDispatch({ type: 'decrement' }); // 👈👈👈
-        }}
-      >
-        Decrement
-      </button>
+      <button onClick={onClick}>Increment</button>
     </div>
   );
 }
