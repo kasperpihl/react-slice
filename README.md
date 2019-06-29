@@ -1,6 +1,11 @@
 # React Slice
 
-A simple performant approach to global state using only React built'ins.
+A simple performant approach to state management using only React built'ins.
+
+1. Uses reducers and dispatch 🤖
+2. Access state from anywhere with hooks 🚀
+3. Optimized for use with Typescript 💙
+4. Full control of render performance 🔥
 
 ## Installation
 
@@ -65,23 +70,23 @@ Parameters
 import React from 'react';
 import useCounterSlice from './counter.slice';
 
-export default function App() {
-  const counterState = useCounterSlice();
+export default function App(test) {
+  const [counter, counterDispatch] = useCounterSlice();
 
   return (
     <div className="App">
-      <h1>{counterState.counter}</h1>
+      <h1>{counter.value}</h1>
       <h2>Start clicking to see some magic happen!</h2>
       <button
         onClick={() => {
-          useCounterSlice.dispatch({ type: 'increment' });
+          counterDispatch({ type: 'increment' });
         }}
       >
         Increment
       </button>
       <button
         onClick={() => {
-          useCounterSlice.dispatch({ type: 'decrement' });
+          counterDispatch({ type: 'decrement' });
         }}
       >
         Decrement

@@ -1,6 +1,6 @@
 {
   "name": "react-slice",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Simple global state with reducers",
   "source": "slice.ts",
   "main": "dist/slice.js",
@@ -30,7 +30,6 @@
     "react": ">=16.8"
   },
   "dependencies": {
-    "@types/react": "^16.8.22",
-    "@types/react-dom": "^16.8.4"
+    "@types/react": "^16.8.22"
   }
 }
