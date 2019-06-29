@@ -15,29 +15,15 @@ npm i react-slice
 
 ## Getting started
 
-- [Creating slices (isolated state objects)](#registersliceoptions)
-- [Accessing and updating the slices](#sliceprovider--createslicestore)
+Let me show first, then explain after 🙏
 
-### Creating slices (isolated state objects)
-
-Register a reducer in file (fx counter.slice.js)
-
-createSlice(options)
-
-options object **Params**
-
-| Name         | Type                    | Default value | Description                                           |
-| ------------ | ----------------------- | ------------- | ----------------------------------------------------- |
-| reducer      | function(state, action) | **required**  | A standard reducer taking 2 arguments: state & action |
-| initialState | any                     | undefined     | The initial value of the state                        |
-| debugName    | string                  | null          | Turn on debugging, showing the string in the log      |
+Create a file and export your reducer (fx counter.slice.js)
 
 ```js
 // counter.slice.js
 import { createSlice } from 'react-slice';
 
 export default createSlice({
-  debugName: 'counter',
   reducer: (state, action) => {
     switch (action.type) {
       case 'increment':
@@ -60,13 +46,11 @@ export default createSlice({
 });
 ```
 
-### Accessing and updating the slices
-
-Parameters
-
-- updateDepFunc `function(state): [...dependencies]` - A function that returns an array of values to trigger re-render
+Then import that file somewhere else (fx App.jsx)
+hint: it exports a hook 🏴‍☠️
 
 ```js
+// App.jsx
 import React from 'react';
 import useCounterSlice from './counter.slice';
 
@@ -95,3 +79,17 @@ export default function App(test) {
   );
 }
 ```
+
+And boom! 💥 That's all you need to get up and running!
+
+## API
+
+The API only exposes one function right now `createSlice(options)`
+
+it takes an options object that looks like this:
+
+| Name         | Type                    | Default value | Description                                           |
+| ------------ | ----------------------- | ------------- | ----------------------------------------------------- |
+| reducer      | function(state, action) | **required**  | A standard reducer taking 2 arguments: state & action |
+| initialState | any                     | undefined     | The initial value of the state                        |
+| debugName    | string                  | null          | Turn on debugging, showing the string in the log      |
