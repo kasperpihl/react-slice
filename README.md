@@ -6,6 +6,7 @@ A simple performant approach to state management using only React built'ins.
 2. Access state from anywhere with hooks 🚀
 3. Optimized for use with Typescript 💙
 4. Full control of render performance 🔥
+5. 2kb minified 💪
 
 ## Installation
 
@@ -14,8 +15,6 @@ npm i react-slice
 ```
 
 ## The basics
-
-Let me show first, then explain after 🙏
 
 Create a file and export your reducer (fx counter.slice.js)
 
@@ -66,7 +65,7 @@ And boom! 💥 That's all you need to get up and running!
 
 The API only exposes one function right now `createSlice(options)`
 
-it takes an options object that looks like this:
+It returns a hook, and takes an options object like this:
 
 | Name         | Type                    | Default value | Description                                           |
 | ------------ | ----------------------- | ------------- | ----------------------------------------------------- |
@@ -75,6 +74,7 @@ it takes an options object that looks like this:
 | debugName    | string                  | null          | Turn on debugging, showing the string in the log      |
 
 The hook it returns looks like this:
+
 `useCounterSlice(updateDepFn?: (state) => [...deps]): [state, dispatch]`
 
 | Name        | Type           | Default value | Description                                                  |
