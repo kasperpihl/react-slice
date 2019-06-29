@@ -1,6 +1,11 @@
-export default (key, type, payload, prevState, nextState) => {
+export default <TA, TS>(
+  name: string,
+  action: TA,
+  prevState: TS,
+  nextState: TS
+) => {
   if (typeof console.groupCollapsed !== 'undefined') {
-    const title = [`react-slice dispatch on key:`, `%c${key}`];
+    const title = [`react-slice dispatch on:`, `%c${name}`];
     const styles = ['color: gray; font-weight: lighter;', ''];
 
     console.groupCollapsed(`%c ${title.join(' ')}`, ...styles);
@@ -10,12 +15,7 @@ export default (key, type, payload, prevState, nextState) => {
       'color: #9E9E9E; font-weight: bold;',
       prevState
     );
-    console.log('%ctype         ', 'color: #03A9F4; font-weight: bold;', type);
-    console.log(
-      '%cpayload      ',
-      'color: #03A9F4; font-weight: bold;',
-      payload
-    );
+    console.log('%caction      ', 'color: #03A9F4; font-weight: bold;', action);
     console.log(
       '%cnext state   ',
       'color: #4CAF50; font-weight: bold;',

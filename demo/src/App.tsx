@@ -1,8 +1,8 @@
 import React from 'react';
-import { useSlice } from 'react-slice';
+import useCounterSlice from './slices/counter.slice';
 
 export default function App() {
-  const [counterState, counterDispatch] = useSlice('counter');
+  const counterState = useCounterSlice();
 
   return (
     <div className="App">
@@ -10,14 +10,14 @@ export default function App() {
       <h2>Start editing to see some magic happen!</h2>
       <button
         onClick={() => {
-          counterDispatch('increment');
+          useCounterSlice.dispatch({ type: 'increment' });
         }}
       >
         Increment
       </button>
       <button
         onClick={() => {
-          counterDispatch('decrement');
+          useCounterSlice.dispatch({ type: 'decrement' });
         }}
       >
         Decrement

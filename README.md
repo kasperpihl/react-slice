@@ -1,6 +1,6 @@
 # React Slice
 
-A simple performant approach to global state using only React built'ins.
+A simple performant approach to global and LOCAL state using only React built'ins.
 
 ## Installation
 
@@ -13,125 +13,96 @@ npm i react-slice
 - [Register our reducers (registerSlice)](#registersliceoptions)
 - [Create and Provide the store (createSliceStore + SliceProvider)](#sliceprovider--createslicestore)
 - [Access/update global state (useSlice)](#useslicestatekey-updatedepfunc-state-dispatch)
-- [Access/update using HOC (withSlice)](#withslicepropkey-statekey-updatedepfunc-component)
 
 ## Advanced stuff
 
 - Coming soon
 
-### registerSlice(options)
+### createSlice(options)
 
 Register a reducer and initial data for a unique key in the state tree.
 
 options object **Params**
 
-- stateKey `string` - A unique key on where to store/access it from the state tree.
+- name `string` - A unique key on where to store/access it from the state tree.
+- debug `boolean`
 - reducer `function(state, type, payload)` - A reducer on how to update state tree, given action arguments
-- initialState `object` - the initial state object.
+- initialState `any` - the initial state object.
 
 ```js
-import { registerSlice } from 'react-slice'
+import { createSlice } from 'react-slice';
 
-registerSlice({
-  stateKey: 'counter',
-  reducer: (state, type, payload) => {
-    switch(type) {
+export default createSlice({
+  name: 'counter',
+  reducer: (state, action) => {
+    switch (action.type) {
       case 'increment':
         return {
           ...state,
-          number: state.number + 1
-        }
+          value: state.value + 1
+        };
       case 'decrement':
         return {
           ...state,
-          number: state.number - 1
-        }
+          value: state.value - 1
+        };
       default:
         return state;
     }
   },
   initialState: {
-    number: 0
+    value: 0
   }
 });
 ```
 
-### SliceProvider + createSliceStore
+### Global state
 
-Create a store and add the provider in your code similar to Redux.
-Probably index.js or App.js:
+In order to use global state, all you need to do, is add a provider similar to Redux.
+Probably index.js:
 
 ```js
-import { SliceProvider, createSliceStore } from 'react-slice';
-const sliceStore = createSliceStore({
-  debug: true,
-  persist: {
-    storage: localStorage
-  }
-});
+import { SliceProvider } from 'react-slice';
 
 render(
-  <SliceProvider store={sliceStore}>
+  <SliceProvider>
     <App>
   </SliceProvider>
 )
 ```
 
-| Prop name | type | Default value | Description |
-| --- | --- | --- | --- |
-| debug | bool | false | Enable the debug logger to see what's going on 🖥 |
-| persist | object | null | Persist the global states 🌍 |
-| persist.storage | Storage | **required** | Storage api to use (localStorage, asyncStorage etc.) 🏬 |
-
-### useSlice(stateKey, [updateDepFunc]): [state, dispatch]
+### useSlice([updateDepFunc]): [state, dispatch]
 
 Parameters
 
-- stateKey `string` - A unique key on where to store/access it from the state tree.
 - updateDepFunc `function(state): [...dependencies]` - A function that returns an array of values to trigger re-render
 
 ```js
-import { useSlice } from 'react-slice';
+import React from 'react';
+import useCounterSlice from './counter.slice';
 
-function CompTest() {
-  // Receive full footerState
-  const [footerState, footerDispatch] = useSlice('footer');
-  
-  // Receive full headerState
-  const [headerState, headerDispatch] = useSlice('header', state => [state.position]);
-  // Above will only re-render whenever state.position changes.
+export default function App() {
+  const counterState = useCounterSlice();
 
-  const callback = () => {
-    // Update footer with an action.
-    footerDispatch('updatePosition', 'right');
-  }
-
-  return <div onClick={callback}>{footerState.position}</div>;
+  return (
+    <div className="App">
+      <h1>{counterState.counter}</h1>
+      <h2>Start editing to see some magic happen!</h2>
+      <button
+        onClick={() => {
+          useCounterSlice.dispatch({ type: 'increment' });
+        }}
+      >
+        Increment
+      </button>
+      <button
+        onClick={() => {
+          useCounterSlice.dispatch({ type: 'decrement' });
+        }}
+      >
+        Decrement
+      </button>
+    </div>
+  );
 }
-```
-
-### withSlice(propKey, stateKey, [updateDepFunc]): Component
-
-Parameters
-
-- propKey `string` - Name of the prop to inject this state into.
-- stateKey `string` - A unique key on where to store/access it from the state tree.
-- updateDepFunc (optional) `function(state): [...dependencies]` - A function that returns an array of values to trigger re-render
-
-```js
-import { withSlice } from 'react-slice';
-
-class CompTest extends React.Component {
-  render() {
-    const [footerState, footerDispatch] = this.props.myChosenProp;
-
-    const callback = () => {
-      // Update footer with an action.
-      footerDispatch('updatePosition', 'right');
-    }
-    return <div onClick={callback}>{footerState.position}</div>;
-  }
-}
-
-export default withSlice('myChosenProp', 'footer')(CompTest);
 ```

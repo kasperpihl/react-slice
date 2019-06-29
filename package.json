@@ -1,18 +1,16 @@
 {
   "name": "react-slice",
-  "version": "0.0.12",
+  "version": "0.1.0",
   "description": "Simple global state with reducers",
-  "source": "src/index.js",
+  "source": "slice.ts",
   "main": "dist/slice.js",
-  "unpkg": "dist/slice.umd.js",
-  "alias": {
-    "react-slice": "./src"
-  },
+  "module": "dist/foo.modern.mjs",
+  "types": "dist/slice.d.ts",
   "scripts": {
     "prebuild": "rimraf dist",
-    "prepublishOnly": "npm run build",
-    "build": "microbundle --jsx React.createElement --no-compress --no-sourcemap",
-    "start": "parcel demo/index.html"
+    "prepack": "npm run build",
+    "build": "microbundle --jsx React.createElement --no-compress --no-sourcemap -f modern,cjs",
+    "demo": "node scripts/run-demo.js"
   },
   "keywords": [
     "Global",
@@ -24,13 +22,14 @@
   "author": "Kasper Pihl Tornoe",
   "license": "MIT",
   "devDependencies": {
-    "microbundle": "^0.11.0",
-    "parcel-bundler": "^1.12.3",
+    "microbundle": "^0.12.0-next.3",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
     "rimraf": "^2.6.3"
   },
   "peerDependencies": {
     "react": ">=16.8"
+  },
+  "dependencies": {
+    "@types/react": "^16.8.22"
   }
 }

@@ -1,6 +1,13 @@
+export type TSubscription = (state: any) => void;
+export type TSubscriptionObject = {
+  [id: string]: TSubscription;
+};
+
 export default function createSubscriberStore() {
-  const subscribers = {};
-  function subscribe(key, callback) {
+  const subscribers: {
+    [key: string]: TSubscriptionObject;
+  } = {};
+  function subscribe(key: string, callback: TSubscription) {
     if (!subscribers[key]) {
       subscribers[key] = {};
     }
@@ -16,7 +23,7 @@ export default function createSubscriberStore() {
       delete subscribers[key][id];
     };
   }
-  function getSubscribers(key) {
+  function getSubscribers(key: string): TSubscriptionObject {
     return subscribers[key] || {};
   }
   return {
