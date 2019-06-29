@@ -13,10 +13,11 @@
     "demo": "node scripts/run-demo.js"
   },
   "keywords": [
-    "Global",
-    "state",
-    "reducer",
     "react",
+    "state management",
+    "hooks",
+    "reducer",
+    "global state",
     "redux"
   ],
   "author": "Kasper Pihl Tornoe",
