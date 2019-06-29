@@ -21,10 +21,10 @@ Create a file and export your reducer (fx counter.slice.js)
 
 ```js
 // counter.slice.js
-import { createSlice } from 'react-slice';
+import { createSlice } from 'react-slice'; // 👈
 
 export default createSlice({
-  reducer: (state, action) => {
+  reducer: /*👈*/ (state, action) => {
     switch (action.type) {
       case 'increment':
         return {
@@ -40,7 +40,7 @@ export default createSlice({
         return state;
     }
   },
-  initialState: {
+  initialState: /*👈*/ {
     value: 0
   }
 });
@@ -52,25 +52,25 @@ hint: it exports a hook 🏴‍☠️
 ```js
 // App.jsx
 import React from 'react';
-import useCounterSlice from './counter.slice';
+import useCounterSlice from './counter.slice'; // 👈
 
 export default function App(test) {
-  const [counter, counterDispatch] = useCounterSlice();
+  const [counter, counterDispatch] = useCounterSlice(); // 👈
 
   return (
     <div className="App">
-      <h1>{counter.value}</h1>
+      <h1>{counter.value}</h1> {/*👈*/}
       <h2>Start clicking to see some magic happen!</h2>
       <button
         onClick={() => {
-          counterDispatch({ type: 'increment' });
+          counterDispatch({ type: 'increment' }); // 👈
         }}
       >
         Increment
       </button>
       <button
         onClick={() => {
-          counterDispatch({ type: 'decrement' });
+          counterDispatch({ type: 'decrement' }); // 👈
         }}
       >
         Decrement
