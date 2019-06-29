@@ -1,7 +1,7 @@
 {
   "name": "react-slice",
   "version": "0.1.1",
-  "description": "Simple global state with reducers",
+  "description": "Single dependency (react) global state. Simplicity 👌 meets performance 🔥",
   "source": "slice.ts",
   "main": "dist/slice.js",
   "module": "dist/slice.modern.mjs",
