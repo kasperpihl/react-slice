@@ -1,21 +1,21 @@
 import { useState, useEffect, useCallback } from 'react';
-import createSliceStore from './utils/createSliceStore';
+import createStore from './utils/createStore';
 import useHasChanges from './utils/useHasChanges';
 
-export default function createSlice<TS, TA>(options: {
+export default function createSliceHook<TS, TA>(options: {
   reducer: (state: TS, action: TA) => TS;
   initialState?: TS;
   debugName?: string;
 }) {
   if (typeof options !== 'object') {
-    throw Error('react-slice: createSlice must include options object');
+    throw Error('react-slice: createSliceHook must include options object');
   }
 
   const { reducer } = options;
   if (typeof reducer !== 'function') {
-    throw Error('react-slice createSlice must include reducer function');
+    throw Error('react-slice createSliceHook must include reducer function');
   }
-  const store = createSliceStore(options);
+  const store = createStore(options);
 
   function useSlice(
     uniqueFn?: (state: TS) => any[]

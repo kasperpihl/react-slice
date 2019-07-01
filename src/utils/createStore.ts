@@ -4,7 +4,7 @@ type TSubscriptionObject = {
   [id: string]: (state: any) => void;
 };
 
-export default function createSliceStore(options) {
+export default function createStore(options) {
   let state = options.initialState;
 
   const subscribers: TSubscriptionObject = {};

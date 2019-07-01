@@ -11,7 +11,7 @@ export default function useHasChanges(slice, updateDepFunc) {
       const deps = updateDepFunc(s);
       if (!Array.isArray(deps)) {
         throw Error(
-          'useGlobalState update dependency function returned a non-array'
+          'react-slice: update dependency function returned a non-array'
         );
       }
       let isDifferent = deps.length !== lastDeps.current.length;

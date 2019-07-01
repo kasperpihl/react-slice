@@ -1,4 +1,4 @@
-import { createSlice } from 'react-slice';
+import { createSliceHook } from 'react-slice';
 import produce from 'immer';
 
 type CounterState = {
@@ -15,7 +15,7 @@ type DecrementAction = {
 
 type CounterActions = IncrementAction | DecrementAction;
 
-export default createSlice({
+export default createSliceHook({
   debugName: 'Counter',
   reducer: (state: CounterState, action: CounterActions) =>
     produce(state, (draft: CounterState) => {

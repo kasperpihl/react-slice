@@ -20,9 +20,9 @@ Create a file and export your hook w/ reducer (fx useCounterSlice.js)
 
 ```js
 // useCounterSlice.js
-import { createSlice } from 'react-slice'; // 👈👈👈
+import { createSliceHook } from 'react-slice'; // 👈👈👈
 
-export default createSlice({
+export default createSliceHook({
   reducer: /*👈👈👈*/ (state, action) => {
     switch (action.type) {
       case 'increment':
@@ -63,7 +63,7 @@ And boom! 💥 That's all you need to get up and running!
 
 ## API
 
-The API only exposes one function right now `createSlice(options)`
+The API only exposes one function right now `createSliceHook(options)`
 
 It returns a hook, and takes an options object like this:
 

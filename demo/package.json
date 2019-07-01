@@ -17,6 +17,6 @@
     "immer": "^3.1.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-slice": "file:../react-slice-0.1.0.tgz"
+    "react-slice": "file:../react-slice-0.1.3.tgz"
   }
 }
