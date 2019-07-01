@@ -16,10 +16,10 @@ npm i react-slice
 
 ## The basics
 
-Create a file and export your reducer (fx counter.slice.js)
+Create a file and export your hook w/ reducer (fx useCounterSlice.js)
 
 ```js
-// counter.slice.js
+// useCounterSlice.js
 import { createSlice } from 'react-slice'; // 👈👈👈
 
 export default createSlice({
@@ -41,7 +41,7 @@ hint: it exports a hook 🏴‍☠️
 ```js
 // App.jsx
 import React from 'react';
-import useCounterSlice from './counter.slice'; // 👈👈👈
+import useCounterSlice from './useCounterSlice'; // 👈👈👈
 
 export default function App(test) {
   const [counter, counterDispatch] = useCounterSlice(); // 👈👈👈

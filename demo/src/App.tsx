@@ -1,5 +1,5 @@
 import React from 'react';
-import useCounterSlice from './slices/counter.slice';
+import useCounterSlice from './slices/useCounterSlice';
 
 export default function App() {
   const [counter, counterDispatch] = useCounterSlice();
