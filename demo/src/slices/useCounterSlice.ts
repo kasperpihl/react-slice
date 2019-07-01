@@ -1,35 +1,22 @@
 import { createSliceHook } from 'react-slice';
-import produce from 'immer';
 
-type CounterState = {
-  value: number;
-};
+type CounterState = number;
 
-type IncrementAction = {
-  type: 'increment';
-};
+type IncrementAction = 'increment';
 
-type DecrementAction = {
-  type: 'decrement';
-};
-
-type CounterActions = IncrementAction | DecrementAction;
+type DecrementAction = 'decrement';
 
 export default createSliceHook({
-  debugName: 'Counter',
-  reducer: (state: CounterState, action: CounterActions) =>
-    produce(state, (draft: CounterState) => {
-      switch (action.type) {
-        case 'increment':
-          draft.value += 1;
-          break;
-        case 'decrement':
-          draft.value -= 1;
-          break;
-      }
-      return draft;
-    }),
-  initialState: {
-    value: 0
-  }
+  name: 'counter',
+  reducer: (state: CounterState, action: IncrementAction | DecrementAction) => {
+    switch (action) {
+      case 'increment':
+        return state + 1;
+      case 'decrement':
+        return state - 1;
+      default:
+        return state;
+    }
+  },
+  initialState: 0
 });

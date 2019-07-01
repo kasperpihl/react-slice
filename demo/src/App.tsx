@@ -2,22 +2,21 @@ import React from 'react';
 import useCounterSlice from './slices/useCounterSlice';
 
 export default function App() {
-  const [counter, counterDispatch] = useCounterSlice();
+  const [counter, counterDispatch] = useCounterSlice(counter => [counter]);
 
   return (
     <div className="App">
-      <h1>{counter.value}</h1>
-      <h2>Start editing to see some magic happen!</h2>
+      <h1>{counter}</h1>
       <button
         onClick={() => {
-          counterDispatch({ type: 'increment' });
+          counterDispatch('increment');
         }}
       >
         Increment
       </button>
       <button
         onClick={() => {
-          counterDispatch({ type: 'decrement' });
+          counterDispatch('decrement');
         }}
       >
         Decrement

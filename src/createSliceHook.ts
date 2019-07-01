@@ -3,15 +3,19 @@ import createStore from './utils/createStore';
 import useHasChanges from './utils/useHasChanges';
 
 export default function createSliceHook<TS, TA>(options: {
+  name: string;
   reducer: (state: TS, action: TA) => TS;
   initialState?: TS;
-  debugName?: string;
 }) {
   if (typeof options !== 'object') {
     throw Error('react-slice: createSliceHook must include options object');
   }
 
-  const { reducer } = options;
+  const { reducer, name } = options;
+  if (typeof name !== 'string' || !name) {
+    throw Error('react-slice createSliceHook must include name');
+  }
+
   if (typeof reducer !== 'function') {
     throw Error('react-slice createSliceHook must include reducer function');
   }

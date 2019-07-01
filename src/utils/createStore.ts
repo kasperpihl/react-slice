@@ -31,9 +31,7 @@ export default function createStore(options) {
     dispatch: <T>(action: T) => {
       const prevState = state;
       state = options.reducer(state, action);
-      if (options.debugName) {
-        debugLogger(options.debugName, action, prevState, state);
-      }
+      debugLogger(options.name, action, prevState, state);
       notify(state);
     }
   };

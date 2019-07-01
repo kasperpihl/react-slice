@@ -23,6 +23,7 @@ Create a file and export your hook w/ reducer (fx useCounterSlice.js)
 import { createSliceHook } from 'react-slice'; // 👈👈👈
 
 export default createSliceHook({
+  name: 'counter', // Used for debugging mainly.
   reducer: /*👈👈👈*/ (state, action) => {
     switch (action.type) {
       case 'increment':
@@ -52,7 +53,6 @@ export default function App(test) {
   return (
     <div className="App">
       <h1>{counter /*👈👈👈*/}</h1>
-      <h2>Start clicking to see some magic happen!</h2>
       <button onClick={onClick}>Increment</button>
     </div>
   );
@@ -69,9 +69,9 @@ It returns a hook, and takes an options object like this:
 
 | Name         | Type                    | Default value | Description                                           |
 | ------------ | ----------------------- | ------------- | ----------------------------------------------------- |
+| name         | string                  | null          | A name to show in the debug log, redux-logger style   |
 | reducer      | function(state, action) | **required**  | A standard reducer taking 2 arguments: state & action |
 | initialState | any                     | undefined     | The initial value of the state                        |
-| debugName    | string                  | null          | Turn on debugging, showing the string in the log      |
 
 The hook it returns looks like this:
 
@@ -100,3 +100,4 @@ I need to write some more stuff soon.
 - [ ] Show how awesome this works with Typescript
 - [ ] Figure out a good way to use this outside react (from utils etc.)
 - [ ] Show an example of creating an HOC of the hook.
+- [ ] Create an SSR strategy and example.
