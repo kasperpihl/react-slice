@@ -4,10 +4,16 @@ A simple performant approach to state management in React.
 
 1. Uses reducers and dispatch 🤖
 2. Access state from anywhere with hooks 🚀
-3. Still you can access the state statically 😲 [See how](https://github.com/kasperpihl/react-slice/blob/master/docs/Use%20statically.md)
-4. Optimized for use with Typescript 💙 [Typescript example](https://github.com/kasperpihl/react-slice/blob/master/docs/Typescript.md)
+3. You can still [use statically](https://github.com/kasperpihl/react-slice/blob/master/docs/Statically.md) 😲
+4. Optimized for [use with Typescript](https://github.com/kasperpihl/react-slice/blob/master/docs/Typescript.md) 💙
 5. Full control of render performance 🔥
-6. 2kb minified 💪 [See bundlephobia](https://bundlephobia.com/result?p=react-slice)
+6. [2kb minified](https://bundlephobia.com/result?p=react-slice) 💪
+
+## Demo
+
+I've made a few Codesandboxes to play around with react-slice
+
+- [Typescript sandbox](https://codesandbox.io/s/youthful-mendel-ze693)
 
 ## Installation
 
@@ -62,6 +68,16 @@ export default function App(test) {
 
 And boom! 💥 That's all you need to get up and running!
 
+## Advanced/FAQ
+
+I need to write some more stuff soon.
+
+- [Avoid unnecessary re-renders](https://github.com/kasperpihl/react-slice/blob/master/docs/Rerenders.md)
+- [Use statically from utils etc.](https://github.com/kasperpihl/react-slice/blob/master/docs/Statically.md)
+- [Use Typescript and get strongly typed state and actions](https://github.com/kasperpihl/react-slice/blob/master/docs/Typescript.md) 💙
+- [ ] Show an example of creating an HOC of the hook.
+- [ ] Create an SSR strategy and example.
+
 ## API
 
 The API only exposes one function right now `createSliceHook(options)`
@@ -92,13 +108,3 @@ function App() {
   // Render your stuff!
 }
 ```
-
-## Advanced
-
-I need to write some more stuff soon.
-
-- [x] Show how to avoid unnecessary re-renders
-- [x] Show how awesome this works with Typescript
-- [ ] Figure out a good way to use this outside react (from utils etc.)
-- [ ] Show an example of creating an HOC of the hook.
-- [ ] Create an SSR strategy and example.
