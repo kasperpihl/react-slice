@@ -1,12 +1,12 @@
 # React Slice
 
-A simple performant approach to state management using only React built'ins.
+A simple performant approach to state management in React.
 
 1. Uses reducers and dispatch 🤖
 2. Access state from anywhere with hooks 🚀
 3. Optimized for use with Typescript 💙
 4. Full control of render performance 🔥
-5. 2kb minified 💪
+5. 2kb minified 💪 [See bundlephobia](https://bundlephobia.com/result?p=react-slice)
 
 ## Installation
 
@@ -97,7 +97,7 @@ function App() {
 I need to write some more stuff soon.
 
 - [x] Show how to avoid unnecessary re-renders
-- [ ] Show how awesome this works with Typescript
+- [x] Show how awesome this works with Typescript
 - [ ] Figure out a good way to use this outside react (from utils etc.)
 - [ ] Show an example of creating an HOC of the hook.
 - [ ] Create an SSR strategy and example.

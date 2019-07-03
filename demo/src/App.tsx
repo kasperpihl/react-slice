@@ -2,7 +2,8 @@ import React from 'react';
 import useCounterSlice from './slices/useCounterSlice';
 
 export default function App() {
-  const [counter, counterDispatch] = useCounterSlice(counter => [counter]);
+  const [counter, counterDispatch] = useCounterSlice();
+  console.log('rendering', counter);
 
   return (
     <div className="App">
