@@ -70,13 +70,11 @@ And boom! 💥 That's all you need to get up and running!
 
 ## Advanced/FAQ
 
-I need to write some more stuff soon.
-
 - [Avoid unnecessary re-renders](https://github.com/kasperpihl/react-slice/blob/master/docs/Rerenders.md)
 - [Use statically from utils etc.](https://github.com/kasperpihl/react-slice/blob/master/docs/Statically.md)
 - [Use Typescript and get strongly typed state and actions](https://github.com/kasperpihl/react-slice/blob/master/docs/Typescript.md) 💙
-- [ ] Show an example of creating an HOC of the hook.
-- [ ] Create an SSR strategy and example.
+- Use as an HOC. (coming soon)
+- Use with Server-side rendering (coming soon)
 
 ## API
 
