@@ -1,6 +1,6 @@
 {
   "name": "react-slice",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Single dependency (react) global state. Simplicity 👌 meets performance 🔥",
   "source": "react-slice.ts",
   "main": "dist/react-slice.js",
