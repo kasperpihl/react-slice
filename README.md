@@ -4,15 +4,16 @@ A simple performant approach to state management in React.
 
 1. Uses reducers and dispatch 🤖
 2. Access state from anywhere with hooks 🚀
-3. You can still [use statically](https://github.com/kasperpihl/react-slice/blob/master/docs/Statically.md) 😲
+3. You can still [use statically](https://github.com/kasperpihl/react-slice/blob/master/docs/Statically.md) or [as HOC](https://github.com/kasperpihl/react-slice/blob/master/docs/Hoc.md) 😲
 4. Optimized for [use with Typescript](https://github.com/kasperpihl/react-slice/blob/master/docs/Typescript.md) 💙
-5. Full control of render performance 🔥
+5. Full control of [render performance](https://github.com/kasperpihl/react-slice/blob/master/docs/Rerenders.md) 🔥
 6. [2kb minified](https://bundlephobia.com/result?p=react-slice) 💪
 
 ## Demo
 
 I've made a few Codesandboxes to play around with react-slice
 
+- [Javascript sandbox](https://codesandbox.io/s/youthful-mendel-ze693)
 - [Typescript sandbox](https://codesandbox.io/s/youthful-mendel-ze693)
 
 ## Installation
