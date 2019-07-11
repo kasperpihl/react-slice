@@ -1,15 +1,14 @@
 {
   "name": "react-slice",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Single dependency (react) global state. Simplicity 👌 meets performance 🔥",
   "source": "react-slice.ts",
   "main": "dist/react-slice.js",
-  "module": "dist/react-slice.modern.mjs",
   "types": "dist/react-slice.d.ts",
   "scripts": {
     "prebuild": "rimraf dist",
     "prepack": "npm run build",
-    "build": "microbundle --jsx React.createElement -f modern,cjs",
+    "build": "microbundle --jsx React.createElement -f cjs",
     "demo": "node scripts/run-demo.js"
   },
   "keywords": [
