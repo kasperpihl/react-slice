@@ -23,7 +23,7 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "@types/react": "^16.8.22",
+    "@types/react": "^16.8.23",
     "microbundle": "^0.12.0-next.3",
     "react": "^16.8.6",
     "rimraf": "^2.6.3"
