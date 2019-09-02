@@ -1,1 +1,1 @@
-export { default as createSliceHook } from './src/createSliceHook';
+export { default as createSlice } from './src/createSlice';

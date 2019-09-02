@@ -24,14 +24,13 @@ npm i react-slice
 
 ## The basics
 
-Create a file and export your hook w/ reducer (fx useCounterSlice.js)
+Create a file and export your hook w/ reducer (fx counterSlice.js)
 
 ```js
-// useCounterSlice.js
-import { createSliceHook } from 'react-slice'; // 👈👈👈
+// counterSlice.js
+import { createSlice } from 'react-slice'; // 👈👈👈
 
-export default createSliceHook({
-  name: 'counter', // Used for debugging mainly.
+export default createSlice({
   reducer: /*👈👈👈*/ (state, action) => {
     switch (action.type) {
       case 'increment':
@@ -40,23 +39,23 @@ export default createSliceHook({
         return state;
     }
   },
-  initialState: /*👈👈👈*/ 0
+  initialState: /*👈👈👈*/ 0,
+  debugName: 'Counter' // Optional.
 });
 ```
 
-Then import that file somewhere else (fx App.jsx)
-hint: it exports a hook 🏴‍☠️
+Then import that file somewhere else (fx App.jsx) 🏴‍☠️
 
 ```js
 // App.jsx
 import React from 'react';
-import useCounterSlice from './useCounterSlice'; // 👈👈👈
+import counterSlice from './counterSlice'; // 👈👈👈
 
 export default function App(test) {
-  const [counter, counterDispatch] = useCounterSlice(); // 👈👈👈
+  const counterState = counterSlice.use(); // 👈👈👈
 
   const onClick = () => {
-    counterDispatch({ type: 'increment' }); // 👈👈👈
+    counterSlice.dispatch({ type: 'increment' }); // 👈👈👈
   };
   return (
     <div className="App">

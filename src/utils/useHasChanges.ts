@@ -1,6 +1,9 @@
 import { useRef, useCallback, useEffect } from 'react';
 
-export default function useHasChanges(slice, updateDepFunc) {
+export default function useHasChanges<TState>(
+  slice: TState,
+  updateDepFunc: (state: TState) => any[]
+) {
   const lastDeps = useRef([]);
   const hasChanges = useCallback(
     s => {

@@ -1,4 +1,4 @@
-import { createSliceHook } from 'react-slice';
+import { createSlice } from 'react-slice';
 
 type CounterState = number;
 
@@ -6,8 +6,7 @@ type IncrementAction = 'increment';
 
 type DecrementAction = 'decrement';
 
-export default createSliceHook({
-  name: 'counter',
+export default createSlice({
   reducer: (state: CounterState, action: IncrementAction | DecrementAction) => {
     switch (action) {
       case 'increment':

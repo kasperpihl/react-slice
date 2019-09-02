@@ -1,8 +1,8 @@
-export default <TA, TS>(
+export default <Actions, State>(
   name: string,
-  action: TA,
-  prevState: TS,
-  nextState: TS
+  action: Actions,
+  prevState: State,
+  nextState: State
 ) => {
   if (typeof console.groupCollapsed !== 'undefined') {
     const title = [`react-slice`, `%c${name}`];

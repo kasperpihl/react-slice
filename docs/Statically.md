@@ -1,23 +1,20 @@
 # Use statically
 
-react-slice follows a hook-first, static-second approach.
-That said, it's very easy to use your slice/state statically.
-The hook has a store property that is an isolated redux-like store
+react-slice returns an object like a redux store (getState, dispatch and subscribe).
+Therefore you can just use it similar to a redux store object
 
 ```js
 // some-util.js
-import useCounterSlice from './useCounterSlice';
+import counterSlice from './counterSlice';
 
-const counterStore = useCounterSlice.store;
 // Get the state.
-
-const counter = counterStore.getState();
+const counter = counterSlice.getState();
 
 // Fire an action.
-counterStore.dispatch('increment');
+counterSlice.dispatch('increment');
 
 // Listen for updates
-const unsubscribe = counterStore.subscribe(newCounter => {
+const unsubscribe = counterSlice.subscribe(newCounter => {
   console.log('state updated', newCounter);
 });
 ```
