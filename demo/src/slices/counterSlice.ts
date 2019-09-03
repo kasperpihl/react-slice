@@ -6,8 +6,8 @@ type IncrementAction = 'increment';
 
 type DecrementAction = 'decrement';
 
-export default createSlice({
-  reducer: (state: CounterState, action: IncrementAction | DecrementAction) => {
+export default createSlice<CounterState, IncrementAction | DecrementAction>({
+  reducer: (state, action) => {
     switch (action) {
       case 'increment':
         return state + 1;

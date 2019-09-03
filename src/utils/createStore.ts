@@ -1,5 +1,7 @@
+import { useState, useEffect } from 'react';
 import debugLogger from './debugLogger';
-import { TOptions } from '../types';
+import useHasChanges from './useHasChanges';
+import { TOptions, IStore } from '../types';
 
 type TSubscriptionObject<TState> = {
   [id: string]: (state: TState) => void;
@@ -7,37 +9,7 @@ type TSubscriptionObject<TState> = {
 
 export default function createStore<TState, TAction>(
   options: TOptions<TState, TAction>
-): {
-  /**
-   * slice.subscribe(callback)
-   * @example
-   * let oldCounter;
-   * slice.subscribe((newState) => {
-   *   // This gets called when state updates.
-   *   if(newState.counter !== oldCounter) {
-   *     console.log('Counter got updated!');
-   *   }
-   *   oldCounter = newState.counter;
-   * })
-   */
-  subscribe: (callback: (state: TState) => void) => () => void;
-  /**
-   * Gets the current state, check .use() for React hook!
-   * @example
-   * // Gets the current state.
-   * const state = slice.getState();
-   */
-  getState: () => TState;
-  /**
-   * Dispatch an action to update state.
-   * @example
-   * slice.dispatch({
-   *   type: 'updatenumber',
-   *   payload: 9
-   * })
-   */
-  dispatch: (action: TAction) => void;
-} {
+): IStore<TState, TAction> {
   let state: TState = options.initialState;
 
   const subscribers: TSubscriptionObject<TState> = {};
@@ -58,7 +30,7 @@ export default function createStore<TState, TAction>(
     }, 0);
   };
 
-  return {
+  const store: IStore<TState, TAction> = {
     subscribe: callback => {
       const id = Math.random()
         .toString(36)
@@ -78,4 +50,22 @@ export default function createStore<TState, TAction>(
       scheduleUpdate();
     }
   };
+  store.use = function useSlice(uniqueFn?: (state: TState) => any[]): TState {
+    const [updateBust, setUpdateBust] = useState(new Date());
+    const state: TState = store.getState();
+
+    const hasChanges = useHasChanges<TState>(state, uniqueFn);
+
+    useEffect(() => {
+      return store.subscribe(newState => {
+        if (hasChanges(newState)) {
+          setUpdateBust(new Date());
+        }
+      });
+    }, [store, hasChanges]);
+
+    return state;
+  };
+
+  return store;
 }
