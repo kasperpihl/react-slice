@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import debugLogger from './debugLogger';
 import useHasChanges from './useHasChanges';
-import { TOptions, IStore } from '../types';
+import { ISliceOptions, ISliceStore } from '../types';
 
 type TSubscriptionObject<TState> = {
   [id: string]: (state: TState) => void;
 };
 
 export default function createStore<TState, TAction>(
-  options: TOptions<TState, TAction>
-): IStore<TState, TAction> {
+  options: ISliceOptions<TState, TAction>
+): ISliceStore<TState, TAction> {
   let state: TState = options.initialState;
 
   const subscribers: TSubscriptionObject<TState> = {};
@@ -30,7 +30,7 @@ export default function createStore<TState, TAction>(
     }, 0);
   };
 
-  const store: IStore<TState, TAction> = {
+  const store: ISliceStore<TState, TAction> = {
     subscribe: callback => {
       const id = Math.random()
         .toString(36)

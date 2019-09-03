@@ -1,5 +1,5 @@
 import React from 'react';
-import counterSlice from './slices/counterSlice';
+import counterSlice from './counterSlice';
 
 export default function App() {
   const counter = counterSlice.use();

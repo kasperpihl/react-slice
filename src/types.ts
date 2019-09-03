@@ -1,4 +1,4 @@
-export interface TOptions<TState, TAction> {
+export interface ISliceOptions<TState = any, TAction = any> {
   /** A reducer, given a state and action to produce the "Next state" */
   reducer: (state: TState, action: TAction) => TState;
   /** Initial state, can be anything, commonly an {} */
@@ -7,7 +7,7 @@ export interface TOptions<TState, TAction> {
   debugName?: string;
 }
 
-export interface IStore<TState, TAction> {
+export interface ISliceStore<TState = any, TAction = any> {
   /**
    * slice.subscribe(callback)
    * @example

@@ -1,5 +1,5 @@
 import createStore from './utils/createStore';
-import { TOptions } from './types';
+import { ISliceOptions } from './types';
 import { assignRadioName } from './utils/assignRadioName';
 
 /**
@@ -16,16 +16,19 @@ import { assignRadioName } from './utils/assignRadioName';
  * })
  */
 export default function createSlice<TState = any, TActions = any>(
-  options: TOptions<TState, TActions>
+  options: ISliceOptions<TState, TActions>
 ) {
   if (typeof options !== 'object') {
-    throw Error('react-slice: createSliceHook must include options object');
+    throw Error(
+      'react-slice: createSlice takes options object as first parameter'
+    );
   }
 
   if (typeof options.reducer !== 'function') {
-    throw Error('react-slice createSliceHook must include reducer function');
+    throw Error('react-slice createSlice must include reducer function');
   }
 
+  // Make sure we get a nice name (StateAlpha, StateBravo, StateCharlie 😂)
   if (typeof options.debugName !== 'string') {
     options.debugName = assignRadioName();
   }
