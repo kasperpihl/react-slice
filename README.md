@@ -70,9 +70,8 @@ And boom! 💥 That's all you need to get up and running!
 
 ## Advanced/FAQ
 
-- [API for createSliceHook()](https://github.com/kasperpihl/react-slice/blob/master/docs/API.md)
+- [API for createSlice()](https://github.com/kasperpihl/react-slice/blob/master/docs/API.md)
 - [Avoid unnecessary re-renders](https://github.com/kasperpihl/react-slice/blob/master/docs/Rerenders.md)
 - [Use statically from utils etc.](https://github.com/kasperpihl/react-slice/blob/master/docs/Statically.md)
 - [Use Typescript and get strongly typed state and actions](https://github.com/kasperpihl/react-slice/blob/master/docs/Typescript.md) 💙
-- Use as an HOC. (coming soon)
 - Use with Server-side rendering (coming soon, would love ideas/usecases)

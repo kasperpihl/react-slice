@@ -46,7 +46,14 @@ export default function createStore<TState, TAction>(
     dispatch: (action: TAction) => {
       const prevState = state;
       state = options.reducer(state, action);
-      debugLogger(options.debugName, action, prevState, state);
+
+      if (
+        typeof process === 'undefined' ||
+        process.env.NODE_ENV !== 'production'
+      ) {
+        debugLogger(options.debugName, action, prevState, state);
+      }
+
       scheduleUpdate();
     }
   };

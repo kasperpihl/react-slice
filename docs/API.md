@@ -1,6 +1,6 @@
 # API
 
-The API only exposes one function right now `createSliceHook(options)`
+The API only exposes one function right now `createSlice(options)`
 
 It returns an object, and takes an options object like this:
 
