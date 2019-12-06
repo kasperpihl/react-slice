@@ -56,7 +56,7 @@ export default function createStore<TState, TAction>(
 
       scheduleUpdate();
     }
-  };
+  } as any;
   store.use = function useSlice(uniqueFn?: (state: TState) => any[]): TState {
     const [updateBust, setUpdateBust] = useState(new Date());
     const state: TState = store.getState();

@@ -49,5 +49,5 @@ export interface ISliceStore<TState = any, TAction = any> {
    *   return <div>{counter}</div>
    * }
    */
-  use?: (uniqueFn?: (state: TState) => any[]) => TState;
+  use: (uniqueFn?: (state: TState) => any[]) => TState;
 }
