@@ -30,7 +30,7 @@ export default function createStore<TState, TAction>(
     }, 0);
   };
 
-  const store: ISliceStore<TState, TAction> = {
+  const tempStore: Omit<ISliceStore<TState, TAction>, 'use'> = {
     subscribe: callback => {
       const id = Math.random()
         .toString(36)
@@ -56,22 +56,26 @@ export default function createStore<TState, TAction>(
 
       scheduleUpdate();
     }
-  } as any;
-  store.use = function useSlice(uniqueFn?: (state: TState) => any[]): TState {
-    const [updateBust, setUpdateBust] = useState(new Date());
-    const state: TState = store.getState();
+  };
 
-    const hasChanges = useHasChanges<TState>(state, uniqueFn);
+  const store: ISliceStore<TState, TAction> = {
+    ...tempStore,
+    use: function useSlice(uniqueFn?: (state: TState) => any[]): TState {
+      const [updateBust, setUpdateBust] = useState(new Date());
+      const state: TState = tempStore.getState();
 
-    useEffect(() => {
-      return store.subscribe(newState => {
-        if (hasChanges(newState)) {
-          setUpdateBust(new Date());
-        }
-      });
-    }, [store, hasChanges]);
+      const hasChanges = useHasChanges<TState>(state, uniqueFn);
 
-    return state;
+      useEffect(() => {
+        return tempStore.subscribe(newState => {
+          if (hasChanges(newState)) {
+            setUpdateBust(new Date());
+          }
+        });
+      }, [tempStore, hasChanges]);
+
+      return state;
+    }
   };
 
   return store;
