@@ -14,7 +14,7 @@ export default function createStore<TState, TAction>(
 
   const subscribers: TSubscriptionObject<TState> = {};
   const notify = (state: TState) => {
-    Object.values(subscribers).forEach(callback => {
+    Object.values(subscribers).forEach((callback) => {
       callback(state);
     });
   };
@@ -31,10 +31,8 @@ export default function createStore<TState, TAction>(
   };
 
   const tempStore: Omit<ISliceStore<TState, TAction>, 'use'> = {
-    subscribe: callback => {
-      const id = Math.random()
-        .toString(36)
-        .substring(7);
+    subscribe: (callback) => {
+      const id = Math.random().toString(36).substring(7);
 
       subscribers[id] = callback;
 
@@ -49,13 +47,14 @@ export default function createStore<TState, TAction>(
 
       if (
         typeof process === 'undefined' ||
-        process.env.NODE_ENV !== 'production'
+        (process.env.NODE_ENV !== 'production' &&
+          process.env.NODE_ENV !== 'test')
       ) {
         debugLogger(options.debugName, action, prevState, state);
       }
 
       scheduleUpdate();
-    }
+    },
   };
 
   const store: ISliceStore<TState, TAction> = {
@@ -67,7 +66,7 @@ export default function createStore<TState, TAction>(
       const hasChanges = useHasChanges<TState>(state, uniqueFn);
 
       useEffect(() => {
-        return tempStore.subscribe(newState => {
+        return tempStore.subscribe((newState) => {
           if (hasChanges(newState)) {
             setUpdateBust(new Date());
           }
@@ -75,7 +74,7 @@ export default function createStore<TState, TAction>(
       }, [tempStore, hasChanges]);
 
       return state;
-    }
+    },
   };
 
   return store;
