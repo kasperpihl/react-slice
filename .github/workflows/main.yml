@@ -10,6 +10,7 @@ jobs:
           node-version: 14
       - run: npm install
       - run: npm test
+      - run: npm run doesntexist
   publish:
     needs: test
     if: ${{ github.ref == 'refs/heads/master' }}
