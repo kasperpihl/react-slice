@@ -1,10 +1,7 @@
-on:
-  push:
-    branches:
-      - main
+on: push
 
 jobs:
-  publish:
+  setup:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -12,6 +9,11 @@ jobs:
         with:
           node-version: 14
       - run: npm install
+  publish:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
       - uses: JS-DevTools/npm-publish@v1
         with:
+          dry-run: true
           token: ${{ secrets.NPM_TOKEN }}
