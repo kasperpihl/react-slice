@@ -8,11 +8,11 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14
-      - run: |
-          npm install
-          npm test
+      - run: npm install
+      - run: npm test
   publish:
     needs: test
+    if: ${{ github.ref == 'refs/heads/master' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -20,9 +20,7 @@ jobs:
         with:
           node-version: 14
       - run: npm install
-      - name: publish to npm
-        if: ${{ github.ref == 'refs/heads/master' }}
-        uses: JS-DevTools/npm-publish@v1
+      - uses: JS-DevTools/npm-publish@v1
         with:
           dry-run: true
           token: ${{ secrets.NPM_TOKEN }}
