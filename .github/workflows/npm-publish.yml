@@ -1,4 +1,7 @@
-on: push
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   publish:
@@ -11,5 +14,4 @@ jobs:
       - run: npm install
       - uses: JS-DevTools/npm-publish@v1
         with:
-          dry-run: true
           token: ${{ secrets.NPM_TOKEN }}
