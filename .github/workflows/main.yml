@@ -1,0 +1,28 @@
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - run: |
+          npm install
+          npm test
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - run: npm install
+      - name: publish to npm
+        if: ${{ github.ref == refs/heads/master }}
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          dry-run: true
+          token: ${{ secrets.NPM_TOKEN }}
