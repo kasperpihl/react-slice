@@ -10,9 +10,9 @@ jobs:
           node-version: 14
       - run: npm install
       - run: npm test
-      - run: npm run doesntexist
   publish:
     needs: test
+    if: ${{ needs.test.result == 'success' && github.ref == 'refs/heads/master' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
